@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `water` ;
 CREATE TABLE IF NOT EXISTS `water` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amountInOunces` DOUBLE NOT NULL,
-  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -38,3 +38,14 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'nutritionuser'@'loc
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `water`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `nutritiondb`;
+INSERT INTO `water` (`id`, `amountInOunces`, `date`) VALUES (1, 12, '2018-05-11 15:35:23');
+INSERT INTO `water` (`id`, `amountInOunces`, `date`) VALUES (2, 12, '2018-05-11 15:35:23');
+INSERT INTO `water` (`id`, `amountInOunces`, `date`) VALUES (3, 10, '2018-05-11 15:35:23');
+
+COMMIT;

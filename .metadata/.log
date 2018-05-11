@@ -285,3 +285,9 @@ Caused by: org.gradle.api.GradleException: There were failing tests. See the rep
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeAction(ExecuteActionsTaskExecuter.java:113)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeActions(ExecuteActionsTaskExecuter.java:95)
 	... 105 more
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-11 17:06:47.142
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-11 17:06:47.143
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
