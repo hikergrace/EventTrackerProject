@@ -28,7 +28,7 @@ public class WaterServiceImpl implements WaterService {
 
 	@Override
 	public Water updateWater(int id, Water w) {
-		Water managedWater = waterRepo.findById(id).get(id);
+		Water managedWater = waterRepo.findById(id).get();
 		managedWater.setAmountinounces(w.getAmountinounces());
 		return waterRepo.saveAndFlush(managedWater);
 	}

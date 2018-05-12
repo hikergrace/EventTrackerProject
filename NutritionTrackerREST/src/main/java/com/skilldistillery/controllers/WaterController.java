@@ -47,7 +47,7 @@ public class WaterController {
 	}
 	
 	@RequestMapping(path="water/{id}", method=RequestMethod.PATCH)
-	public Water update(@PathVariable int id, @PathVariable Date date, @RequestBody Water water){
+	public Water update(@PathVariable int id, @RequestBody Water water){
 		return waterService.updateWater(id, water);
 	}
 	

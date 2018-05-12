@@ -23,8 +23,8 @@ public class WaterTest {
 	
 	@Test
 	public void test_comment_findWaterByAmount(){
-	List<Water> results = waterRepo.findById(1);	
-	assertEquals("12", results.get(1).getAmountinounces());
+	Water result = waterRepo.findById(0).get();	
+	assertEquals("12", result.getAmountinounces());
 		
 	}
 	
