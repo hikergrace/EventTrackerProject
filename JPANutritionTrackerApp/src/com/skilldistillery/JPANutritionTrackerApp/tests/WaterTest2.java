@@ -30,11 +30,11 @@ public class WaterTest2 {
 		emf.close();
 	}
 	
-	@Test
-	public void test_water_mapping() {
-		Water w = em.find(Water.class, 1);
-		System.out.println(em);
-		System.out.println(w);
-		assertEquals("12", w.getAmountinOunces());
+//	@Test
+//	public void test_water_mapping() {
+//		Water w = em.find(Water.class, 1);
+//		System.out.println(em);
+//		System.out.println(w);
+//		assertEquals("12", w.getAmountinOunces());
 	}
-}
+

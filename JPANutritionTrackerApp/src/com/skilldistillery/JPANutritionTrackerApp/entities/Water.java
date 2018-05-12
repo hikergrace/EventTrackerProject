@@ -2,6 +2,7 @@ package com.skilldistillery.JPANutritionTrackerApp.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Water {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="amountinounces")
 	private double amountinounces;
 	
 	@CreationTimestamp
@@ -27,39 +29,41 @@ public class Water {
 	
 	
 	// --------------- gets and sets -------------------
+
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
-
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-	public double getAmountinOunces() {
+	
+	public double getAmountinounces() {
 		return amountinounces;
 	}
-
-
-	public void setAmountinOunces(double amountinOunces) {
-		this.amountinounces = amountinOunces;
+	
+	public void setAmountinounces(double amountinounces) {
+		this.amountinounces = amountinounces;
 	}
-
-
+	
 	public Date getDate() {
 		return date;
 	}
-
-
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	
+	
 	// ------------------- constructors -------------------
 	public Water() {
 		
 	}
+
 
 	public Water(int id, double amountinOunces, Date date) {
 		super();

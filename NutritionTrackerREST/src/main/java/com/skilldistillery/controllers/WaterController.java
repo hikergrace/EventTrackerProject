@@ -1,5 +1,6 @@
 package com.skilldistillery.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.JPANutritionTrackerApp.entities.Water;
-import com.skilldistillery.repositories.WaterRepository;
 import com.skilldistillery.services.WaterService;
 
 @RestController
@@ -33,6 +34,26 @@ public class WaterController {
 	@RequestMapping(path = "water", method = RequestMethod.GET)
 	public List<Water> index() {
 		return waterService.index();
+	}
+	
+	@RequestMapping(path="water/{id}", method=RequestMethod.GET)
+	public Water show(@PathVariable int id){
+		return waterService.show(id);
+	}
+	
+	@RequestMapping(path="water", method=RequestMethod.POST)
+	public Water create(@RequestBody Water water){
+		return waterService.createWater(water);
+	}
+	
+	@RequestMapping(path="water/{id}", method=RequestMethod.PATCH)
+	public Water update(@PathVariable int id, @PathVariable Date date, @RequestBody Water water){
+		return waterService.updateWater(id, water);
+	}
+	
+	@RequestMapping(path="water/{id}", method=RequestMethod.DELETE)
+	public boolean delete(@PathVariable int id){
+		return waterService.deleteWater(id);
 	}
 
 }

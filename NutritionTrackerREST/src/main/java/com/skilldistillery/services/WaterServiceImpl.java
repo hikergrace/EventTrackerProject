@@ -14,18 +14,49 @@ public class WaterServiceImpl implements WaterService {
 	@Autowired
 	private WaterRepository waterRepo;
 
+
 	@Override
-	public List<Water> findByAmount(double amountinounces) {
+	public List<Water> index() {
+		return waterRepo.findAll();
+	}
+
+	@Override
+	public Water createWater(Water w) {
+		System.out.println(w);
+		return waterRepo.saveAndFlush(w);
+	}
+
+	@Override
+	public Water updateWater(int id, Water w) {
+		Water managedWater = waterRepo.findById(id).get(id);
+		managedWater.setAmountinounces(w.getAmountinounces());
+		return waterRepo.saveAndFlush(managedWater);
+	}
+
+	
+	@Override
+	public boolean deleteWater(int id) {
+		try {
+			waterRepo.deleteById(id);
+			return true;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;	}
+
+	@Override
+	public Water show(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public List<Water> index() {
-		// TODO Auto-generated method stub
-		return waterRepo.findAll();
-	}
-
 	
+//  not using this, don't really want to REPLACE water inputs
+//	@Override
+//	public Water replaceWater(int id, Water w) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }
