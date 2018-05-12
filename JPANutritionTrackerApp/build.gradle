@@ -1,11 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 /*
 name your project's dependency group and give it an initial version.
 the 'artifactId' is assigned automatically based on the project's name.
 */
-group = 'com.skilldistillery.JPANutritionTrackerApp.tests'
+group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
 
 /*
@@ -32,8 +33,24 @@ sourceSets {
   main {
     java.srcDirs 'src'
     resources.srcDirs 'src/resources'
+    test {
+    java.srcDirs 'tests'
+    resources.srcDirs 'src'
+    }
   }
+ 
  }
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.3'
+    }
+}
+
 
 // set query location for dependencies
 repositories {
@@ -42,11 +59,11 @@ repositories {
 
 // define project specific dependencies
 dependencies {
-  compile "mysql:mysql-connector-java:5.1.39"
+  compile "mysql:mysql-connector-java:5.1.46"
   compile "log4j:log4j:1.2.17"
   compile "org.hibernate:hibernate-core:$hibernateVersion"
   compile "org.hibernate:hibernate-c3p0:$hibernateVersion"
-  
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.5'
   
   compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
 	  testCompile('org.apiguardian:apiguardian-api:1.0.0')

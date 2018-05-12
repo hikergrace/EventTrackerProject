@@ -7,6 +7,8 @@
   <persistence-unit name="JPANutritionTrackerApp">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
+    
+    <class>com.skilldistillery.JPANutritionTrackerApp.entities.Water</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url"

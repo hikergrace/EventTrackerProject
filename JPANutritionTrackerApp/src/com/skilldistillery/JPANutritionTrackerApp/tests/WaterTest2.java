@@ -6,33 +6,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.skilldistillery.JPANutritionTrackerApp.entities.Water;
 
-class WaterTest {
-
+public class WaterTest2 {
 	private EntityManagerFactory emf;
 	private EntityManager em; 
 	
 	
 	
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPANutritionTrackerApp");
 		em = emf.createEntityManager();
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		em.close();
 		emf.close();
 	}
 	
 	@Test
-	void test_water_mapping() {
+	public void test_water_mapping() {
 		Water w = em.find(Water.class, 1);
 		System.out.println(em);
 		System.out.println(w);

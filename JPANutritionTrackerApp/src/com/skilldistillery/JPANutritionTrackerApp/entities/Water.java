@@ -18,7 +18,7 @@ public class Water {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private double amountinOunces;
+	private double amountinounces;
 	
 	@CreationTimestamp
 	@Temporal(TemporalType.DATE)
@@ -38,12 +38,12 @@ public class Water {
 
 
 	public double getAmountinOunces() {
-		return amountinOunces;
+		return amountinounces;
 	}
 
 
 	public void setAmountinOunces(double amountinOunces) {
-		this.amountinOunces = amountinOunces;
+		this.amountinounces = amountinOunces;
 	}
 
 
@@ -64,14 +64,14 @@ public class Water {
 	public Water(int id, double amountinOunces, Date date) {
 		super();
 		this.id = id;
-		this.amountinOunces = amountinOunces;
+		this.amountinounces = amountinOunces;
 		this.date = date;
 	}
 
 	// ---------------------- toString -----------------------
 	@Override
 	public String toString() {
-		return "Water [id=" + id + ", amountinOunces=" + amountinOunces + ", date=" + date + "]";
+		return "Water [id=" + id + ", amountinOunces=" + amountinounces + ", date=" + date + "]";
 	}
 	
 	
