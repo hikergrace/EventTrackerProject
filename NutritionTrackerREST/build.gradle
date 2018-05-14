@@ -10,6 +10,7 @@ buildscript {
 	}
 }
 
+apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -21,6 +22,12 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+}
+
+war {
+  enabled = true
+  archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
+  destinationDir = file("./WAR")      // WAR/ folder under project root directory
 }
 
 
@@ -35,9 +42,10 @@ dependencies {
 	compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.1'
 	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '8.5.23'
 	
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	
 	compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
-  	testCompile('org.apiguardian:apiguardian-api:1.0.0')
+  	testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
   	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.0.1',
         'org.junit.vintage:junit-vintage-engine:4.12.1',
         'org.junit.platform:junit-platform-launcher:1.0.1',
