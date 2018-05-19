@@ -13,7 +13,8 @@ function init() {
 		}
 	});
 	 document.drinkWater.saveWater.addEventListener('click', addNewWater);
-	 loadAllWater();
+	 document.seeAllWater.listWater.addEventListener('click', loadAllWater);
+	 document.deleteWater.deleteWaterInst.addEventListener('click', deleteWater);
 }
 
 function getWater(waterId) {
@@ -40,8 +41,6 @@ function displayWater(water) {
 	var showWater = document.createElement('p');
 	showWater.textContent = water.amountinounces;
 	waterDisplay.appendChild(showWater);
-	
-
 }
 
 function addNewWater(evt){
@@ -72,7 +71,8 @@ function addNewWater(evt){
 	xhr.send(waterJson);
 }
 
-function loadAllWater(){
+function loadAllWater(e){
+	e.preventDefault();
 	  var xhr = new XMLHttpRequest();
 	  xhr.open('GET', 'api/water');
 	  xhr.onreadystatechange = function(){
@@ -108,11 +108,22 @@ function displayAllWater(waters){
 	});
 }
 
-
-
-
-
-
-
-
-
+function deleteWater(){
+	var xhr = new XMLHttpRequest();
+	var waterId = document.deleteWater.waterId.value;
+	xhr.open('DELETE', 'api/water/' + waterId, true);
+	xhr.onreadystatechange = function() {
+		if (this.readyState === 4) {
+			if (this.status === 200) {
+				var waterJSON = this.responseText;
+				console.log(xhr.responseText);
+				var waterObj = JSON.parse(waterJSON);
+				displayWater(waterObj);
+			} else {
+				//DISPLAY ERROR MSG
+			}
+		}
+	};
+	xhr.send(null);
+}
+	

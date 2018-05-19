@@ -1,6 +1,7 @@
 package com.skilldistillery.JPANutritionTrackerApp.entities;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +23,7 @@ public class Water {
 	@Column(name="amountinounces")
 	private double amountinounces;
 	
-	@CreationTimestamp
-	@Temporal(TemporalType.DATE)
+	
 	private Date date;
 
 	

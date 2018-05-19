@@ -16,11 +16,12 @@
 	<div id="output">
 		<div id="waterCons"></div>
 	</div>
+	
 	<br>
 	
 	<p>See water totals:</p>
 	<form name="seeAllWater">
-	<button name="listWater">Click</button>
+		<button name="listWater">Click</button>
 	</form>
 	
 	<div id="waterIndex"></div>
@@ -28,12 +29,20 @@
 	<br>
 	<hr>
 	<br>
+	
+	<p>Delete water</p>
+	<form name="deleteWater">
+		<input type"number" name="waterId">
+		<button name="deleteWaterInst">Delete</button>
+	</form>	
+	
+	<br>
+	
 	<p>Enter the amount of water:</p>
 	<form name="drinkWater">
-		Date: <input type="text" name="date"><br> Amount in
+		Date: <input type="datetime" name="date"><br> Amount in
 		ounces: <input type="text" name="amountinounces"><br>
 		<button name="saveWater">Save</button>
-
 	</form>
 
 
