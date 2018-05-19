@@ -96,8 +96,13 @@ function displayAllWater(waters){
 		tr.waterId=water.id;
 		table.appendChild(tr);
 		var td = document.createElement('td');
-		td.textContent = water.amountinounces;
+		td.textContent = water.id;
+		var td2 = document.createElement('td');
+		td2.textContent = water.amountinounces;
+		
 		tr.appendChild(td);
+		tr.appendChild(td2);
+		
 		tr.addEventListener('click', function(evt){
 			var cell = evt.target;
 			var wid = cell.parentElement.waterId;
