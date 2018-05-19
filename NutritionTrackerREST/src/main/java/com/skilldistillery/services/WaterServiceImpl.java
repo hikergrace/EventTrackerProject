@@ -47,8 +47,7 @@ public class WaterServiceImpl implements WaterService {
 
 	@Override
 	public Water show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return waterRepo.findById(id).get();
 	}
 
 	
