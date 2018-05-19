@@ -13,6 +13,7 @@ function init() {
 		}
 	});
 	 document.drinkWater.saveWater.addEventListener('click', addNewWater);
+	 loadAllWater();
 }
 
 function getWater(waterId) {
@@ -39,7 +40,7 @@ function displayWater(water) {
 	var showWater = document.createElement('p');
 	showWater.textContent = water.amountinounces;
 	waterDisplay.appendChild(showWater);
-	console.log("we up in here")
+	
 
 }
 
@@ -55,12 +56,12 @@ function addNewWater(evt){
 	xhr.open('POST', 'api/water');
 	xhr.setRequestHeader('Content-type','application/json');
 	xhr.onreadystatechange = function(){
-		console.log(waterJson)
+		
 		if(this.readyState === 4){
 			if(this.status === 200 || this.status === 201){
 				var newWaterDrink = this.responseText;
 				var newWaterToday = JSON.parse(newWaterDrink);
-				diplayWater(newWaterToday);
+				displayWater(newWaterToday);
 			}
 			else {
 				//DISPLAY ERROR MESSAGE
@@ -70,4 +71,48 @@ function addNewWater(evt){
 	console.log(waterJson);
 	xhr.send(waterJson);
 }
+
+function loadAllWater(){
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('GET', 'api/water');
+	  xhr.onreadystatechange = function(){
+	    if (this.readyState === 4) {
+	      if (this.status === 200) {
+	        var waters = JSON.parse(this.responseText);
+	        displayAllWater(waters);
+	      }
+	    }
+	  };
+	  xhr.send(null);
+	}
+
+function displayAllWater(waters){
+	var div = document.getElementById('waterIndex');
+	var table = document.createElement('table');
+	div.appendChild(table);
+	console.log(waters);
+	waters.forEach(function(water){
+		var tr = document.createElement('tr');
+		tr.waterId=water.id;
+		table.appendChild(tr);
+		var td = document.createElement('td');
+		td.textContent = water.amountinounces;
+		tr.appendChild(td);
+		tr.addEventListener('click', function(evt){
+			var cell = evt.target;
+			var wid = cell.parentElement.waterId;
+			if(!isNaN(wid) && wid > 0){
+				getWater(wid);
+			}
+		});
+	});
+}
+
+
+
+
+
+
+
+
 
