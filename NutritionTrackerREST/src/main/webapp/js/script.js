@@ -1,6 +1,7 @@
 window.addEventListener('load', function(e) {
 	console.log('document loaded');
 	init();
+	
 });
 
 function init() {
@@ -15,6 +16,8 @@ function init() {
 	 document.drinkWater.saveWater.addEventListener('click', addNewWater);
 	 document.seeAllWater.listWater.addEventListener('click', loadAllWater);
 	 document.deleteWater.deleteWaterInst.addEventListener('click', deleteWater);
+	 document.updateWater.saveUtdWater.addEventListener('click', updateWater);
+//	 document.seeAllWater.listWater.addEventListener('click', sumWater);
 }
 
 function getWater(waterId) {
@@ -71,8 +74,8 @@ function addNewWater(evt){
 	xhr.send(waterJson);
 }
 
-function loadAllWater(e){
-	e.preventDefault();
+function loadAllWater(evt){
+	evt.preventDefault();
 	  var xhr = new XMLHttpRequest();
 	  xhr.open('GET', 'api/water');
 	  xhr.onreadystatechange = function(){
@@ -90,7 +93,22 @@ function displayAllWater(waters){
 	var div = document.getElementById('waterIndex');
 	var table = document.createElement('table');
 	div.appendChild(table);
+	var thead = document.createElement('thead');
+    table.appendChild(thead);
+    var tr = document.createElement('tr');
+    thead.appendChild(tr);
+    var th = document.createElement('th');
+    th.textContent = "ID";
+    tr.appendChild(th);
+    var th2 = document.createElement('th');
+    th2.textContent = "Date";
+    tr.appendChild(th2);
+    var th3 = document.createElement('th');
+    th3.textContent = "Ounces";
+    tr.appendChild(th3);
+    
 	console.log(waters);
+
 	waters.forEach(function(water){
 		var tr = document.createElement('tr');
 		tr.waterId=water.id;
@@ -98,22 +116,43 @@ function displayAllWater(waters){
 		var td = document.createElement('td');
 		td.textContent = water.id;
 		var td2 = document.createElement('td');
-		td2.textContent = water.amountinounces;
+		td2.textContent = water.date;
+		var td3 = document.createElement('td');
+		td3.textContent = water.amountinounces;
+//		var td4 = document.createElement('td');
+//		td4.textContent = "Click here to delete";
 		
 		tr.appendChild(td);
 		tr.appendChild(td2);
+		tr.appendChild(td3);
+//		tr.appendChild(td4);
 		
-		tr.addEventListener('click', function(evt){
-			var cell = evt.target;
-			var wid = cell.parentElement.waterId;
-			if(!isNaN(wid) && wid > 0){
-				getWater(wid);
-			}
-		});
+//		td4.addEventListener('click', function(evt){
+//			var cell = evt.target;
+//			var wid = cell.parentElement.waterId;
+//			if(!isNaN(wid) && wid > 0){
+//				deleteWater(wid);
+//			}
+//		});
 	});
 }
 
+function sumWater(water) {
+	var sums = ();
+	sums.push(water.amountinounces);
+	console.log(sums);
+	
+	for (var w = 0; w <sums.length; w++){
+		var sumOfWater = amountinounces[w] ++;}
+	
+	var div = document.getElementById('waterSum');
+	var showWaterSum = document.createElement('p');
+	showWaterSum.textContent = sumofWater;
+	
+	}
+
 function deleteWater(){
+//	var waterJson = JSON.stringify(newWater);
 	var xhr = new XMLHttpRequest();
 	var waterId = document.deleteWater.waterId.value;
 	xhr.open('DELETE', 'api/water/' + waterId, true);
@@ -130,5 +169,34 @@ function deleteWater(){
 		}
 	};
 	xhr.send(null);
+}
+
+function updateWater(evt){
+	evt.preventDefault();
+	var form = document.updateWater;
+	var waterId = document.updateWater.waterId.value;
+	var newUtdWater = {
+			amountinounces: form.amountinounces.value
+	};
+	var waterUtdJson = JSON.stringify(newUtdWater);
+	console.log(newUtdWater);
+	var xhr = new XMLHttpRequest();
+	xhr.open('PATCH', 'api/water' + waterId, true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.onreadystatechange = function(){
+		
+		if(this.readyState === 4){
+			if(this.status === 200 || this.status === 201){
+				var newUtdWaterDrink = this.responseText;
+				var newUtdWaterToday = JSON.parse(newUtdWaterDrink);
+				displayWater(newUtdWaterToday);
+			}
+			else {
+				console.log(waterUtdJson)
+			}
+		}
+	};
+	console.log(waterUtdJson);
+	xhr.send(waterUtdJson);
 }
 	

@@ -50,12 +50,4 @@ public class WaterServiceImpl implements WaterService {
 		return waterRepo.findById(id).get();
 	}
 
-	
-//  not using this, don't really want to REPLACE water inputs
-//	@Override
-//	public Water replaceWater(int id, Water w) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 }
