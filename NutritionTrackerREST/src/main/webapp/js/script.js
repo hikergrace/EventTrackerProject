@@ -137,19 +137,19 @@ function displayAllWater(waters){
 	});
 }
 
-function sumWater(water) {
-	var sums = ();
-	sums.push(water.amountinounces);
-	console.log(sums);
-	
-	for (var w = 0; w <sums.length; w++){
-		var sumOfWater = amountinounces[w] ++;}
-	
-	var div = document.getElementById('waterSum');
-	var showWaterSum = document.createElement('p');
-	showWaterSum.textContent = sumofWater;
-	
-	}
+//function sumWater(water) {
+//	var sums = ();
+//	sums.push(water.amountinounces);
+//	console.log(sums);
+//	
+//	for (var w = 0; w <sums.length; w++){
+//		var sumOfWater = amountinounces[w] ++;}
+//	
+//	var div = document.getElementById('waterSum');
+//	var showWaterSum = document.createElement('p');
+//	showWaterSum.textContent = sumofWater;
+//	
+//	}
 
 function deleteWater(){
 //	var waterJson = JSON.stringify(newWater);
@@ -174,28 +174,28 @@ function deleteWater(){
 function updateWater(evt){
 	evt.preventDefault();
 	var form = document.updateWater;
+	var amountInOunces = document.updateWater.amountinounces.value;
+	console.log(amountInOunces);
 	var waterId = document.updateWater.waterId.value;
-	var newUtdWater = {
-			amountinounces: form.amountinounces.value
-	};
-	var waterUtdJson = JSON.stringify(newUtdWater);
-	console.log(newUtdWater);
+
 	var xhr = new XMLHttpRequest();
-	xhr.open('PATCH', 'api/water' + waterId, true);
+	xhr.open('PATCH', 'api/water/' + waterId, true);
 	xhr.setRequestHeader('Content-type','application/json');
+	var newUtdWaterToday = { id: waterId, amountinounces: amountInOunces }
 	xhr.onreadystatechange = function(){
-		
+
 		if(this.readyState === 4){
 			if(this.status === 200 || this.status === 201){
 				var newUtdWaterDrink = this.responseText;
-				var newUtdWaterToday = JSON.parse(newUtdWaterDrink);
 				displayWater(newUtdWaterToday);
+				console.log(newUtdWaterToday)	
 			}
 			else {
-				console.log(waterUtdJson)
+//				console.log(waterUtdJson)
 			}
 		}
 	};
+	var waterUtdJson = JSON.stringify(newUtdWaterToday);
 	console.log(waterUtdJson);
 	xhr.send(waterUtdJson);
 }
