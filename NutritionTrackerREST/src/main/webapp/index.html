@@ -10,18 +10,6 @@
 	<br>
 	<hr>
 	<br>
-
-	<p>See a list of water consumed:</p>
-	<form name="seeAllWater">
-		<button name="listWater">Click</button>
-	</form>
-	
-	<div id="waterIndex"></div>
-	<br>
-	
-	<p>Total amount of water:<br>
-	<div id="waterSum"></div>
-	
 	
 	<p>Get water by id:</p>
 	<form name="seeWater">
@@ -31,18 +19,21 @@
 	<div id="output">
 		<div id="waterCons"></div>
 	</div>
-	<br><br>
-	
-	<p>Enter the amount of water:</p>
-	<form name="drinkWater">
-		Date: <input type="date" name="date"><br> 
-		Amount in ounces: <input type="text" name="amountinounces"><br>
-		<button name="saveWater">Save</button>
+	<br>
+
+	<p>To see a list of water consumed:</p>
+	<form name="seeAllWater">
+		<button name="listWater">Click</button>
 	</form>
-	<br><br>
 	
+	<div id="waterIndex"></div>
+	<br>
 	
-	<p>Edit water by id#</p>
+	<p>You've drunk: <div id="waterSum"></div> ounces of water.</p>
+	
+	<br>
+	
+	<p>Need to change an entry? Edit water by id#</p>
 	<form name="updateWater">
 		ID: <input type="number" name="waterId"><br>
 	    New amount in ounces: <input type="text" name="amountinounces">
@@ -50,7 +41,15 @@
 		<button name="saveUtdWater">Save</button>
 	</form>
 	<div name="uptData"></div>
-	<br><br>
+	<br>
+	
+	<p>Did you drink more water? Use the drop-down calendar and enter the amount here:</p>
+	<form name="drinkWater">
+		Date: <input type="date" name="date"><br> 
+		Amount in ounces: <input type="text" name="amountinounces"><br>
+		<button name="saveWater">Save</button>
+	</form>
+	<br>
 	
 	<p>Delete water by id#</p>
 	<form name="deleteWater">
