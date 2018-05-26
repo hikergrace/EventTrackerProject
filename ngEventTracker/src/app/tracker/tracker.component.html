@@ -1,0 +1,32 @@
+<h1>Nutrition Tracker</h1>
+<br>
+<hr>
+<br>
+
+
+<!-- Show all water consumed -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Amount in ounces</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let track of tracks">
+    <td>{{track.id}}</td>
+    <td>{{track.amountinounces}}</td>
+    <td><button (click)="deleteWater(track.id)" class="btn btn-danger">X</button><td>
+  </tr>
+</tbody>
+</table>
+
+<!--Create new water entry-->
+<p>Did you drink more water? Enter the amount here:</p>
+<form *ngIf="!selected">
+ Amount in ounces<input type="text" name="amountinounces" [(ngModel)]="track.amountinounces"/><br>
+  <button (click)="addWater()">Save </button>
+</form>
+
+
+

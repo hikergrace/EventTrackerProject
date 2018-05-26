@@ -36,14 +36,14 @@ public class WaterServiceImpl implements WaterService {
 	
 	@Override
 	public boolean deleteWater(int id) {
-		try {
-			waterRepo.deleteById(id);
-			return true;
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return false;	}
+			try {
+				waterRepo.deleteById(id);
+				return true;
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return false;	}
 
 	@Override
 	public Water show(int id) {
